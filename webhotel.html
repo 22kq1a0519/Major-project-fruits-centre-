@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glory fruits centre</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: comic sans Ms;
+        }
+        video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+             transform: translateX(-50%) translateY(-50%); 
+        } 
+      
+        section{
+            
+            background: rgba(255, 255, 255, 0.1); /* transparent white */
+            backdrop-filter: blur(10px);
+             -webkit-backdrop-filter: blur(10px); /* for Safari */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            color: black;
+
+            
+         
+        }
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .heading {
+            background: rgba(255, 255, 255, 0.1); /* transparent white */
+            backdrop-filter: blur(10px);
+             -webkit-backdrop-filter: blur(10px); /* for Safari */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            color: white;
+        }
+        .heading h1, .heading h3 {
+            font-weight: 400;
+            font-size: 28px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .food-items {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .food-items img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        .details {
+            background: rgba(255, 255, 255, 0.1); /* transparent white */
+            backdrop-filter: blur(10px);
+             -webkit-backdrop-filter: blur(10px); /* for Safari */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            color: black;
+
+        }
+        .details-sub {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .details-sub h1 {
+            font-weight: 600;
+            font-size: 20px;
+            color:red;
+            margin-bottom: 5px;
+        }
+        .price {
+            font-weight: bold;
+            color: gray;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .details p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .buttons button {
+            background: blue;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .buttons button:hover {
+            background: #c2185b;
+        }
+        .add-to-cart button {
+            background: #4CAF50;
+            transition: background-color 0.3s ease;
+        }
+        .add-to-cart button:hover {
+            background: #45a049;
+        }
+        .buttons button a {
+            text-decoration: none; /* Remove underline */
+            color: inherit; /* Inherit text color */
+        }
+        
+
+    </style>
+</head>
+<body>
+   
+    <div class="heading">
+        <centre><h1>Glory Fruits Centre</h1></centre>
+        <centre><h3>Menu</h3></centre>
+    </div>
+   
+    <div class="menu">
+        <!-- Food Items -->
+        <div class="food-items">
+            <img src="data:image/jpeg;base64,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" alt="Apple">
+            <div class="details">
+                <div class="details-sub">
+                    <h1>Apple<span class="price">$10.99</span></h1>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, impedit!</p>
+                <div class="buttons">
+                    <button><a href="order.html">Order Now</a></button>
+                    <div class="add-to-cart">
+                        <button onclick="addToCart();">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+         
+        </div>
+        <div class="food-items">
+            <img src="https://media.istockphoto.com/id/173242750/photo/banana-bunch.jpg?s=2048x2048&w=is&k=20&c=zjbSwVloGR-ZdlXwRfuLZ2mwfk9uKZtDCwR8fMaOt00=" alt="Bananaa">
+            <div class="details">
+                <div class="details-sub">
+                    <h1>Banana<span class="price">$10.99</span></h1>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, impedit!</p>
+                <div class="buttons">
+                    <button><a href="order.html">Order Now</a></button>
+                    <div class="add-to-cart">
+                        <button onclick="addToCart();">Add to Cart</button>                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="food-items">
+            <img src="https://media.istockphoto.com/id/976859596/photo/farmer-taking-fresh-orange-from-wooden-box-in-orange-orchard.jpg?s=612x612&w=0&k=20&c=JdqPocdMBTLG_M5vVa5nxyVi1s1mDbU2Cviu6Ck49wk=" alt="Burger">
+        
+            <div class="details">
+                
+                <div class="details-sub">
+                    <h1>Orange<span class="price">$10.99</span></h1>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, impedit!</p>
+                <div class="buttons">
+                    <button><a href="order.html">Order Now</a></button>
+                    <div class="add-to-cart">
+                        <button onclick="addToCart();">Add to Cart</button>                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="food-items">
+            <img src="https://media.istockphoto.com/id/1217479737/photo/pineapple-with-slices-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=KYxsZ-Bv1tEgjrOmH9qxak06iTK9S5betgteqTuDzhU=">
+            <div class="details">
+                <div class="details-sub">
+                    <center>
+                        <h1>pineApple<span class="price">$10.99</span></h1>
+                    </center>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                <div class="buttons">
+                    <button><a href="order.html">Order Now</a></button>
+                    <div class="add-to-cart">
+                        <button onclick="addToCart();">Add to Cart</button>                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="https://media.istockphoto.com/id/493890436/photo/kiwi-fruit-slices-on-wooden-table.jpg?s=612x612&w=0&k=20&c=mjwyrQ0YPFuTMZtmcSv7UIkgBRDFfwpf30anV9RL1kQ=">
+            <div class="details">
+                <div class="details-sub">
+                    <center>
+                        <h1>kiwi<span class="price">$10.99</span></h1>
+                    </center>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                <div class="buttons">
+                    <button><a href="order.html">Order Now</a></button>
+                    <div class="add-to-cart">
+                        <button onclick="addToCart();">Add to Cart</button>                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="https://media.istockphoto.com/id/1278985806/photo/avacodo-is-harvested-in-the-hands-of-farmers-selecting-quality-products.jpg?s=612x612&w=0&k=20&c=iR5mk4npCJYtfVyXI7e75I1xINU54aycZGsE4POf4FI=">
+            <div class="details">
+                <div class="details-sub">
+                    <center>
+                        <h1>Avacodo<span class="price">$10.99</span></h1>
+                    </center>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                <div class="buttons">
+                    <button><a href="order.html">Order Now</a></button>
+                    <div class="add-to-cart">
+                        <button onclick="addToCart();">Add to Cart</button>                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="https://media.istockphoto.com/id/1224636159/photo/closeup-of-a-red-guava-cut-in-half-in-the-background-several-guavas-and-green-leaf.jpg?s=612x612&w=0&k=20&c=KJ9YilkRRuFh0bnw64Ol0IZDfoQF7UIxyC6dRVIjaoA=">
+            <div class="details">
+                <div class="details-sub">
+                    <center>
+                        <h1>Guava<span class="price">$10.99</span></h1>
+                    </center>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                <div class="buttons">
+                    <button><a href="order.html">Order Now</a></button>
+                    <div class="add-to-cart">
+                        <button onclick="addToCart();">Add to Cart</button>                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="https://media.istockphoto.com/id/823672534/photo/fresh-ripe-jackfruit-fresh-sweet-jackfruit-segment-ready-for-eat.jpg?s=612x612&w=0&k=20&c=zpYx6a4qj9cn9v0KSlND5mkhLuhZ9g1U1CF03Uid-5g=">
+            <div class="details">
+                <div class="details-sub">
+                    <center>
+                        <h1>Jack Fruit<span class="price">$10.99</span></h1>
+                    </center>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                <div class="buttons">
+                    <button><a href="order.html">Order Now</a></button>
+                    <div class="add-to-cart">
+                        <button onclick="addToCart();">Add to Cart</button>                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="https://media.istockphoto.com/id/1163930184/photo/papaya-on-wooden-background.jpg?s=612x612&w=0&k=20&c=W-1l2k1J8raJGvUb1NM0oeqEdC2DqRbt-2gpzfXL01o=">
+            <div class="details">
+                <div class="details-sub">
+                    <center>
+                        <h1>Papaya<span class="price">$10.99</span></h1>
+                    </center>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                <div class="buttons">
+                    <button><a href="order.html">Order Now</a></button>
+                    <div class="add-to-cart">
+                        <button onclick="addToCart();">Add to Cart</button>                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="https://media.istockphoto.com/id/478266756/photo/watermelon.jpg?s=612x612&w=0&k=20&c=U94v8i3oEAYh4lbxgDQmZAuA9kww7vlOwY-K0k_ElXE=">
+            <div class="details">
+                <div class="details-sub">
+                    <center>
+                        <h1>Watermalon<span class="price">$10.99</span></h1>
+                    </center>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                <div class="buttons">
+                    <button><a href="order.html">Order Now</a></button>
+                    <div class="add-to-cart">
+                        <button onclick="addToCart();">Add to Cart</button>                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="https://media.istockphoto.com/id/1130230871/photo/bunch-of-red-and-white-grapes.jpg?s=612x612&w=0&k=20&c=eDRbSDV6cTALHa0tyKkrMOtuGnnRAUetRJuIBuXAMZ0=">
+            <div class="details">
+                <div class="details-sub">
+                    <center>
+                        <h1>Grapes<span class="price">$10.99</span></h1>
+                    </center>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                <div class="buttons">
+                    <button><a href="order.html">Order Now</a></button>
+                    <div class="add-to-cart">
+                        <button onclick="addToCart();">Add to Cart</button>                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="food-items">
+            <img src="https://media.istockphoto.com/id/1003319026/photo/fresh-cool-mango-salad.jpg?s=612x612&w=0&k=20&c=LahQVVfdKGXlFG8A3PzzI4cMA-jqDHWX5A2cEQhmhNk=">
+            <div class="details">
+                <div class="details-sub">
+                    <center>
+                        <h1>Mango<span class="price">$10.99</span></h1>
+                    </center>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                <div class="buttons">
+                    <button><a href="order.html">Order Now</a></button>
+                    <div class="add-to-cart">
+                        <button onclick="addToCart('TANDOORI',10.99);">Add to Cart</button>                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add more food items here -->
+    </div>
+    
+    <video autoplay muted loop> <source src="https://media.istockphoto.com/id/1290587802/video/large-blueberries-are-flying-up-with-splashes-of-the-water-on-black-background.mp4?s=mp4-480x480-is&k=20&c=JP8FANL2meTfW4huHR9PRWpeBzqBu9Wnwfdy52-QhDs=" type="video/mp4"></video>
+    <script>
+  function addToCart(button) {
+    // Get the food item div
+    const foodItem = button.closest('.food-items');
+
+    // Get name and price
+    const name = foodItem.querySelector('h1').childNodes[0].textContent.trim();
+    const price = parseFloat(foodItem.querySelector('.price').textContent.replace('$', ''));
+
+    // Get current cart from localStorage or initialize empty array
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Check if item already exists in cart
+    const existingItem = cart.find(item => item.name === name);
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push({ name, price, quantity: 1 });
+    }
+
+    // Save updated cart
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // Optional alert
+    alert(`${name} added to cart!`);
+  }
+
+  // Attach to all Add to Cart buttons
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.add-to-cart button');
+    buttons.forEach(button => {
+      button.onclick = () => addToCart(button);
+    });
+  });
+  
+  function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Check if item already exists
+    const existing = cart.find(item => item.name === name);
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({ name, price, quantity: 1 });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(`${name} added to cart!`);
+  }
+
+</script>
+</body>
+</html>
