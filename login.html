@@ -1,0 +1,77 @@
+<html>
+   <head>
+         <title>JavaScript functions </title>
+           <style>
+             video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+             transform: translateX(-50%) translateY(-50%); 
+        } 
+        section{
+                    background: rgba(255, 255, 255, 0.1); /* transparent white */
+                    backdrop-filter: blur(10px);
+                    -webkit-backdrop-filter: blur(10px); /* for Safari */
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    border-radius: 16px;
+                    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                    padding: 20px;
+                    color: black;
+
+                }
+                input{
+            background: rgba(255, 255, 255, 0.1); /* transparent white */
+                    backdrop-filter: blur(10px);
+                    -webkit-backdrop-filter: blur(10px); /* for Safari */
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    border-radius: 16px;
+                    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
+                    padding: 10px;
+                    color: white;
+        }
+           </style>
+           <script>
+         // User Validations
+            function loginValidation() {
+             // Ramesh
+            var uname = document.myform.username.value;
+              //Ramesh@123
+            var password = document.myform.password.value;
+             if(uname==null || uname=="") {
+               alert("Name cant be blank")
+               return false;  
+            } else if (password.length<6){
+               alert("Password Must be 6 letters")
+               return false;
+            }  
+            return true                 
+         }           
+      </script>
+      </head>
+      <body>
+        <section>
+        <container>
+          <center> 
+            <h2>Login Page</h2>
+<form name="myform" action="LoginSuccess.html"  onsubmit="return loginValidation(this)">
+ 
+User Name : <input type="text" name="username"><br><br>
+Password :  <input type="password" name="password"><br><br>
+conform password : <input type="password" name="conform password"><br><br>
+         <input type="submit" value="Submit">     
+          
+        </form>
+    </center>
+</container>
+</section>
+<video autoplay muted loop> <source src="https://media.istockphoto.com/id/1311933735/video/burst-of-strawberry-raspberry-blueberry-in-white-background-with-alpha-channel.mp4?s=mp4-640x640-is&k=20&c=CgYfZi408E56SnC_9a5pvWH4lybZ5Lv0KQH36t6ET98=" type="video/mp4"> 
+           
+</video>
+        </body>
+   </body>
+</html>
